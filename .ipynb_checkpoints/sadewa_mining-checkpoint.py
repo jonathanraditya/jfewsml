@@ -2,7 +2,6 @@ import requests
 import datetime
 import time
 import os
-import numpy as np
 
 # defining function to download the data
 
@@ -10,71 +9,69 @@ def executeSadewa(data, sleepTime, inputStartDate=False, startDate=None):
     '''
     Execute sadewa download for specific index
     '''
-    dom = 'https://sadewa.sains.lapan.go.id/'
-    
     database={
         'IR1':{
-            'url':dom+'HIMAWARI/himawari_merc/IR1/{}/{}/{}/',
+            'url':'https://sadewa.sains.lapan.go.id/HIMAWARI/himawari_merc/IR1/{}/{}/{}/',
             'fname':'H89_IR1_{}{}{}{}00.png',
             'yearStart':'2020'
         },
         'IR3':{
-            'url':dom+'HIMAWARI/himawari_merc/IR3/{}/{}/{}/',
+            'url':'https://sadewa.sains.lapan.go.id/HIMAWARI/himawari_merc/IR3/{}/{}/{}/',
             'fname':'H89_IR3_{}{}{}{}00.png',
             'yearStart':'2020'
         },
         'VIS':{
-            'url':dom+'HIMAWARI/himawari_merc/VIS/{}/{}/{}/',
+            'url':'https://sadewa.sains.lapan.go.id/HIMAWARI/himawari_merc/VIS/{}/{}/{}/',
             'fname':'H89_VIS_{}{}{}{}00.png',
             'yearStart':'2020'
         },
         'B04':{
-            'url':dom+'HIMAWARI/himawari_merc/B04/{}/{}/{}/',
+            'url':'https://sadewa.sains.lapan.go.id/HIMAWARI/himawari_merc/B04/{}/{}/{}/',
             'fname':'H89_B04_{}{}{}{}00.png',
             'yearStart':'2020'
         },
         'CCLD':{
-            'url':dom+'HIMAWARI/komposit/{}/{}/{}/',
+            'url':'https://sadewa.sains.lapan.go.id/HIMAWARI/komposit/{}/{}/{}/',
             'fname':'H89_CCLD_{}{}{}{}00.png',
             'yearStart':'2020'
         },
         'rain':{
-            'url':dom+'wrf/{}/{}/{}/',
+            'url':'https://sadewa.sains.lapan.go.id/wrf/{}/{}/{}/',
             'fname':'rain_{}{}{}_{}.png',
             'yearStart':'2019'
         },
         'cloud':{
-            'url':dom+'wrf/{}/{}/{}/',
+            'url':'https://sadewa.sains.lapan.go.id/wrf/{}/{}/{}/',
             'fname':'cloud_{}{}{}_{}.png',
             'yearStart':'2019'
         },
         'psf':{
-            'url':dom+'wrf/{}/{}/{}/',
+            'url':'https://sadewa.sains.lapan.go.id/wrf/{}/{}/{}/',
             'fname':'psf_{}{}{}_{}.png',
             'yearStart':'2019'
         },
         'qvapor':{
-            'url':dom+'wrf/{}/{}/{}/',
+            'url':'https://sadewa.sains.lapan.go.id/wrf/{}/{}/{}/',
             'fname':'qvapor_{}{}{}_{}.png',
             'yearStart':'2019'
         },
         'sst':{
-            'url':dom+'wrf/{}/{}/{}/',
+            'url':'https://sadewa.sains.lapan.go.id/wrf/{}/{}/{}/',
             'fname':'sst_{}{}{}_{}.png',
             'yearStart':'2019'
         },
         'wind':{
-            'url':dom+'wrf/{}/{}/{}/',
+            'url':'https://sadewa.sains.lapan.go.id/wrf/{}/{}/{}/',
             'fname':'wind_{}{}{}_{}.png',
             'yearStart':'2019'
         },
         'winu':{
-            'url':dom+'wrf/{}/{}/{}/',
+            'url':'https://sadewa.sains.lapan.go.id/wrf/{}/{}/{}/',
             'fname':'winu_{}{}{}_{}.png',
             'yearStart':'2019'
         },
         'wn10':{
-            'url':dom+'wrf/{}/{}/{}/',
+            'url':'https://sadewa.sains.lapan.go.id/wrf/{}/{}/{}/',
             'fname':'wn10_{}{}{}_{}.png',
             'yearStart':'2019'
         },
@@ -108,8 +105,8 @@ def executeSadewa(data, sleepTime, inputStartDate=False, startDate=None):
     for i in range(dateRange+1):
         dateLoop=(startDate+datetime.timedelta(i))
         
-        hours = list(map(lambda x: f'{x:02d}', np.arange(0,24,1, dtype='int')))
-        
+        # loop from 0 to 23 
+        hours=['00','01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23']
         for hour in hours:
             # building URL
             burl=database[data]['url']
